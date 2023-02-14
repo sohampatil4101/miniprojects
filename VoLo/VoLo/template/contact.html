@@ -16,7 +16,6 @@ active
 
 {% block body %}
 
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="/"> Back </a></button>
 <div>
 <div>
   {% if success %}
@@ -27,6 +26,7 @@ active
     </button>
   </div>
   {% endif %}
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="/"> Back </a></button>
 
   
 <h2 class="text-center">Mail us on:<a href='mailto:patilsoham390@gmail.com' >patilsoham390@gmail.com</a></h2>
@@ -59,10 +59,9 @@ active
           <textarea class="form-control" id="desc" row="3" name="desc" placeholder="Enter a discription"></textarea>
         </div>  
 
+            <button type="submit" class="btn btn-primary" >Submit</button>
 
-      <button type="submit" class="btn btn-primary" >Submit
-    </button>
+      {% comment %} {% endif %} {% endcomment %}
   </form>
 </div>
-
 {% endblock body %}

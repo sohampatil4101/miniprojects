@@ -12,31 +12,33 @@ active
 
 
 
-
-
 {% block body %}
 
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="/"> Back </a></button>
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="/owner"> Register as Shopowner </a></button>
 <div>
-    {% if successs %}
-  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    {{mssg}}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
+  {% if successs %}
+  <div style="height: 50px;" >
+    <div class="alert alert-danger alert-dismissible fade show" style="height:50px" role="alert">
+      {{mssg}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
   </div>
   {% endif %}
-
+  
   {% if success %}
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
-    <strong>Registration Completed!!</strong> Thank you {{name}}
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
+  <div style="height: 50px;" >
+    <div class="alert alert-success alert-dismissible fade show" style="height:50px" role="alert">
+      <strong>Registration Completed!!</strong> Thank you {{name}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
   </div>
   {% endif %}
-
+  
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="/"> Back </a></button>
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><a href="/owner"> Register as Shopowner </a></button>
 <h2 class="text-center ">Registration Page for Costumers</h2>
 
 </div>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from todoapp.models import Contact
-from todoapp.models import Task
 from todoapp.models import Owner
+from todoapp.models import Finalowner
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from datetime import datetime
@@ -23,7 +23,7 @@ def about(request):
 
 def contact(request):
     
-    context = {'success': False}
+    context = {'success': False }
     if request.method == "POST":
         name = request.POST['name']
         email = request.POST['email']
@@ -31,7 +31,7 @@ def contact(request):
         desc = request.POST['desc']
         ins = Contact(name = name, email= email, phone = phone, desc = desc)
         ins.save()
-        context = {'success': True}
+        context = {'success': True }
 
     return render(request, 'contact.html', context)
 
@@ -85,10 +85,16 @@ def register(request):
 
         elif (User.objects.filter(username=username).exists() ):
             context={'successs':True,'mssg':"Username exists!!"}
-            
+        
+        elif (Finalowner.objects.filter(username=username).exists() ):
+            context={'successs':True,'mssg':"Username exists!!"}
 
         elif ( User.objects.filter(email=email).exists() ):
             context={'successs':True,'mssg':"Email exists!!"}
+
+        elif (Finalowner.objects.filter(email=email).exists() ):
+            context={'successs':True,'mssg':"Email exists!!"}
+
 
         else:
             ins = User.objects.create_user(username = username, first_name = first_name, last_name = last_name, email = email, password = password1)
@@ -120,7 +126,14 @@ def owner(request):
             context={'successs':True,'mssg':"Username exists!!"}
             
 
+        elif (Finalowner.objects.filter(username=username).exists() ):
+            context={'successs':True,'mssg':"Username exists!!"}
+
         elif ( Owner.objects.filter(email=email).exists() ):
+            context={'successs':True,'mssg':"Email exists!!"}
+
+
+        elif ( Finalowner.objects.filter(email=email).exists() ):
             context={'successs':True,'mssg':"Email exists!!"}
 
         else:
@@ -131,3 +144,29 @@ def owner(request):
 
 
     return render(request, 'owner.html', context)
+
+
+def add(request):
+    so = Owner.objects.all()
+    context = {'so': so}
+    return render(request, 'admin.html', context)
+
+
+def delete(request, name):
+    abc = Owner.objects.get(username = name)
+    abc.delete()
+    return redirect("/add")
+
+
+def view(request, obj, obj2, obj3, obj4, obj5):
+    context = {'name': obj, 'first_name': obj2, 'last_name': obj3, 'email': obj4, 'phone': obj5}
+    return render(request, 'view.html', context)
+
+
+def accept(request, obj, obj2, obj3, obj4, obj5):
+    xyz = Finalowner(username = obj, first_name = obj2, last_name = obj3, email = obj4, phone = obj5)
+    xyz.save()
+    abc = Owner.objects.get(username = obj)
+    abc.delete()
+    return redirect("/add")
+    

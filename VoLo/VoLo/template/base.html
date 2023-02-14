@@ -10,6 +10,27 @@
 
     <title> Todo-List {% block title %}{% endblock title %} </title>
   </head>
+  <script>
+    
+    function soham() {
+      if(document.body.style.background === "white"){
+        document.body.style.background = "black"
+        document.documentElement.style.color = "white"
+        setInterval(function () {
+          document.title = "Soham is great"
+        }, 5000);
+        document.title = "Soham is coder"
+
+
+      }
+      else{
+    document.body.style.background = "white"
+    document.documentElement.style.color = "black"
+      }
+    }
+    setInterval
+
+  </script>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#"></a>
@@ -35,6 +56,10 @@
         <li class="nav-item {% block activeregister %}{% endblock activeregister %}">
             <a class="nav-link" href="/register">Register</a>
         </li>  
+        <li class="nav-item ">
+    <button class="btn btn-outline-success my-2 my-sm-0" onclick="soham()" type="submit">dark  </button>
+    <!-- <button class="btn btn-outline-success my-2 my-sm-0" onclick="sahil()" type="submit">Light </button> -->
+        </li> 
           </ul>
         </div>
       </nav>

@@ -12,14 +12,6 @@ class Contact(models.Model):
         return self.name
 
 
-class Task(models.Model):
-    name = models.TextField()
-    task = models.TextField()
-    description = models.TextField()
-    date = models.DateField()
-
-    def __str__(self):
-        return self.task
 
 class Owner(models.Model):
     username = models.TextField()
@@ -35,3 +27,13 @@ class Owner(models.Model):
 
     # date = models.DateField()
 
+class Finalowner(models.Model):
+    username = models.TextField()
+    first_name = models.TextField()
+    last_name = models.TextField()
+    email = models.EmailField()
+    phone = models.CharField(max_length=10)
+    images = models.ImageField(upload_to='images')
+
+    def __str__(self):
+        return self.username
