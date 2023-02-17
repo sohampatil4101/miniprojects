@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 Home page
@@ -14,6 +15,54 @@ active
 
 
 {% block body %}
-Soham!!!<a href="/tmp">soham</a>
+
+{% comment %} <div class="container" style="width:100%; height:70px">
+	<div id="carouselExampleIndicators" style="width:100%; height:70px"
+		class="carousel slide" data-ride="carousel" >
+		<ol class="carousel-indicators mb-150" style="bottom: 150;">
+			<li data-target="#carouselExampleIndicators"
+				data-slide-to="0" class="active"></li>
+			<li data-target="#carouselExampleIndicators"
+				data-slide-to="1"></li>
+			<li data-target="#carouselExampleIndicators"
+				data-slide-to="2"></li>
+		</ol>
+		<div class="carousel-inner">
+			<div class="carousel-item active" style="width:100%; height:70%">
+				<img class="d-block w-100" src=
+"D:\VoLo\VoLo\images\resume_npeoGN2.png"
+					alt="Second slide">
+			</div>
+			<div class="carousel-item" style="width:100%; height:70%" >
+				<img class="d-block w-100" src=
+"D:\VoLo\VoLo\images\resume_npeoGN2.png"
+					alt="First slide">
+			
+	<script>
+		// Handle Bootstrap carousel slide event
+		$('.carousel').carousel({
+			interval: 1000
+		});
+	</script>
+
+</div> {% endcomment %}
+
+<div class="container pt-12 ">
+<div class="row md-4">
+  {% for so in so %}
+  <div class="col md-4 mx-3 my-3 mb-4 ">
+<div class="card" style="width: 18rem;">
+  <img src="{{so.images}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{so.itemname}}</h5>
+    <p class="card-text">Price: Rs{{so.itemprice}}.</p>
+    <p class="card-text">Availibility:{{so.lastdate}}.</p>
+    <a href="#" class="btn btn-primary">Check</a>
+  </div>
+</div>
+</div>
+{% endfor %}
+</div>
+</div>
 
 {% endblock body %}

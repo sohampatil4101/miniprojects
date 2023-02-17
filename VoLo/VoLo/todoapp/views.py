@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from todoapp.models import Contact
 from todoapp.models import Owner
 from todoapp.models import Finalowner
+from todoapp.models import Item
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from datetime import datetime
@@ -11,7 +12,9 @@ from datetime import datetime
 
 
 def home(request):
-   return render(request, 'home.html')
+    so = Item.objects.all()
+    context = {'so':so}
+    return render(request, 'home.html', context)
 
 
 
@@ -48,7 +51,15 @@ def loginuser(request):
         password = request.POST['password']
         user = authenticate(username= username, password = password)
 
-        if user is not None:
+        if (Finalowner.objects.filter(username=glo).exists()):
+            login(request, user)
+            # return redirect("/todo")      
+            context = {'name':username}
+            return render(request, 'seller.html',context)
+            context = {'successs':False}
+
+
+        elif user is not None:
             login(request, user)
             # return redirect("/todo")      
             context = {'name':username}
@@ -170,3 +181,22 @@ def accept(request, obj, obj2, obj3, obj4, obj5):
     abc.delete()
     return redirect("/add")
     
+
+def addproduct(request):
+    
+    if request.method == "POST":
+        itemname = request.POST['itemname']
+        category = request.POST['category']
+        itemprice = request.POST['itemprice']
+        lastdate = request.POST['lastdate']
+        images = request.POST['images']
+
+        if ( len(itemname) or len(itemprice) or len(category)) == 0:
+            context={'successs':True,'mssg':"Please enter every field!!"}
+            return render(request, 'seller.html', context)
+
+        else:
+            ins = Item(itemname = itemname, category = category, itemprice = itemprice, lastdate = lastdate, images = images)
+            ins.save()
+            context = {'success': True}
+    return render(request, 'seller.html', context)

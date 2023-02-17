@@ -37,3 +37,39 @@ class Finalowner(models.Model):
 
     def __str__(self):
         return self.username
+
+class Item(models.Model):
+    seller = models.TextField()
+    category = models.TextField()
+    itemname = models.TextField()
+    itemprice = models.IntegerField()
+    lastdate = models.DateField()
+    images = models.ImageField(upload_to='images')
+
+    def __str__(self):
+        return self.itemname
+
+
+
+
+# # specifying choices
+
+# SEMESTER_CHOICES = (
+# 	("1", "1"),
+# 	("2", "2"),
+# 	("3", "3"),
+# 	("4", "4"),
+# 	("5", "5"),
+# 	("6", "6"),
+# 	("7", "7"),
+# 	("8", "8"),
+# )
+
+# # declaring a Student Model
+
+# class Student(models.Model):
+# 	semester = models.CharField(
+# 		max_length = 20,
+# 		choices = SEMESTER_CHOICES,
+# 		default = '1'
+# 		)
